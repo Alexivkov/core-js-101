@@ -1,3 +1,5 @@
+/* eslint-disable no-const-assign */
+/* eslint-disable no-mixed-operators */
 /* *******************************************************************************************
  *                                                                                           *
  * Please read the following tutorial before implementing tasks:                              *
@@ -19,8 +21,8 @@
  *    'Tue, 26 Jan 2016 13:48:02 GMT' => Date()
  *    'Sun, 17 May 1998 03:00:00 GMT+01' => Date()
  */
-function parseDataFromRfc2822(/* value */) {
-  throw new Error('Not implemented');
+function parseDataFromRfc2822(value) {
+  return Date.parse(value);
 }
 
 /**
@@ -34,8 +36,8 @@ function parseDataFromRfc2822(/* value */) {
  *    '2016-01-19T16:07:37+00:00'    => Date()
  *    '2016-01-19T08:07:37Z' => Date()
  */
-function parseDataFromIso8601(/* value */) {
-  throw new Error('Not implemented');
+function parseDataFromIso8601(value) {
+  return Date.parse(value);
 }
 
 
@@ -53,8 +55,12 @@ function parseDataFromIso8601(/* value */) {
  *    Date(2012,1,1)    => true
  *    Date(2015,1,1)    => false
  */
-function isLeapYear(/* date */) {
-  throw new Error('Not implemented');
+function isLeapYear(date) {
+  const year = date.getFullYear();
+  if (year % 4 !== 0) return false;
+  if (year % 100 !== 0) return true;
+  if (year % 400 !== 0) return false;
+  return true;
 }
 
 
@@ -75,6 +81,7 @@ function isLeapYear(/* date */) {
  */
 function timeSpanToString(/* startDate, endDate */) {
   throw new Error('Not implemented');
+  // return new Date(Date.parse(endDate) - Date.parse(startDate)).toISOString().slice(11, -1);
 }
 
 
@@ -96,6 +103,12 @@ function timeSpanToString(/* startDate, endDate */) {
  */
 function angleBetweenClockHands(/* date */) {
   throw new Error('Not implemented');
+
+  // const angle = 60 * new Date(date).getUTCHours() + new Date(date).getMinutes();
+  // let radians = Math.abs(Math.PI * angle) / 360;
+  // if (radians > 2 * Math.PI) radians = Math.abs(2 * Math.PI - radians);
+  // if (radians > Math.PI) radians = Math.abs(Math.PI - radians);
+  // return radians;
 }
 
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* ********************************************************************************************
  *                                                                                            *
  * Please read the following tutorial before implementing tasks:                               *
@@ -464,8 +465,15 @@ function sortCitiesArray(arr) {
  *           [0,0,0,1,0],
  *           [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  let k = 0;
+  return Array.from({ length: n }, () => 0)
+    .map(() => Array.from({ length: n }, () => 0))
+    .map((item) => {
+      item[k] = 1;
+      k += 1;
+      return item;
+    });
 }
 
 /**

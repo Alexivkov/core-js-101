@@ -1,3 +1,4 @@
+/* eslint-disable prefer-promise-reject-errors */
 /* ************************************************************************************************
  *                                                                                                *
  * Please read the following tutorial before implementing tasks:                                   *
@@ -30,6 +31,15 @@
  */
 function willYouMarryMe(/* isPositiveAnswer */) {
   throw new Error('Not implemented');
+  // return new Promise((resolve, reject) => {
+  // eslint-disable-next-line max-len
+  //   if (typeof isPositiveAnswer !== 'boolean') throw new Error('Wrong parameter is passed! Ask her again');
+  //   if (isPositiveAnswer) {
+  //     resolve('Hooray!!! She said "Yes"!');
+  //   } else {
+  //     reject('Oh no, she said "No".');
+  //   }
+  // });
 }
 
 
