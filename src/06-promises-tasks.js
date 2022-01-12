@@ -29,17 +29,20 @@
  *      .catch((error) => console.log(error.message)) // 'Error: Wrong parameter is passed!
  *                                                    //  Ask her again.';
  */
-function willYouMarryMe(/* isPositiveAnswer */) {
-  throw new Error('Not implemented');
-  // return new Promise((resolve, reject) => {
-  // eslint-disable-next-line max-len
-  //   if (typeof isPositiveAnswer !== 'boolean') throw new Error('Wrong parameter is passed! Ask her again');
-  //   if (isPositiveAnswer) {
-  //     resolve('Hooray!!! She said "Yes"!');
-  //   } else {
-  //     reject('Oh no, she said "No".');
-  //   }
-  // });
+function willYouMarryMe(isPositiveAnswer) {
+  if (!isPositiveAnswer && typeof isPositiveAnswer === 'boolean') {
+    return new Promise((reject) => {
+      reject('Oh no, she said "No".');
+    });
+  }
+  if (isPositiveAnswer && typeof isPositiveAnswer === 'boolean') {
+    return new Promise((resolve) => {
+      resolve('Hooray!!! She said "Yes"!');
+    });
+  }
+  return new Promise((reject) => {
+    reject(new Error('Wrong parameter is passed! Ask her again.'));
+  });
 }
 
 
