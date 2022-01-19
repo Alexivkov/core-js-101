@@ -490,21 +490,22 @@ function getMatrixProduct(m1, m2) {
  *
  */
 function evaluateTicTacToePosition(position) {
-  // const first = position[0][0];
-  // const third = position[0][2];
-  // const fifth = position[1][1];
-  // const seventh = position[2][0];
-  // const ninth = position[2][2];
-  // if (first === 'X' || fifth === 'X' && ninth === 'X') return 'X';
-  // if (first === '0' || fifth === '0' && ninth === '0') return '0';
-  // if (third === 'X' || fifth === 'X' && seventh === 'X') return 'X';
-  // if (third === '0' || fifth === '0' && seventh === '0') return 'X';
-  // for (let i = 0; i < 3; i += 1) {
-  //   if (position[0].every((item) => item === 'X')) return 'X';
-  //   if (position[0].every((item) => item === '0')) return '0';
-  //   if (position.every((item) => item[i] === 'X')) return 'X';
-  //   if (position.every((item) => item[i] === '0')) return '0';
-  // }
+  const first = position[0][0];
+  const third = position[0][2];
+  const fifth = position[1][1];
+  const seventh = position[2][0];
+  const ninth = position[2][2];
+  if (first === 'X' && fifth === 'X' && ninth === 'X') return 'X';
+  if (first === '0' && fifth === '0' && ninth === '0') return '0';
+  if (third === 'X' && fifth === 'X' && seventh === 'X') return 'X';
+  if (third === '0' && fifth === '0' && seventh === '0') return '0';
+  for (let i = 0; i < 3; i += 1) {
+  /* console.log(i) */
+    if (position[i].join('') === 'XXX') return 'X';
+    if (position[i].join('') === '000') return 0;
+    if (position.every((item) => item[i] === 'X')) return 'X';
+    if (position.every((item) => item[i] === '0')) return '0';
+  }
 }
 
 
