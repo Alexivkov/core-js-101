@@ -406,15 +406,20 @@ function toNaryString(num, n) {
  *   ['/web/favicon.ico', '/web-scripts/dump', '/verbalizer/logs'] => '/'
  */
 function getCommonDirectoryPath(pathes) {
-  let res = '';
-  const first = pathes[0].split('/');
-  first.forEach((el, index) => {
-    const temp = first.slice(0, index + 1);
-    if (!pathes.every((item) => item.startsWith(temp.join('/')))) {
-      res = index;
-    }
+  const result = pathes[0];
+  const start = pathes.every((item) => item.startsWith('/')) ? '/' : '';
+  const HasCommonPath = pathes.every((item) => {
+    const restOfItem = item.slice(result.length);
+    return result === item || (item.startsWith(`${result}/`) && restOfItem.startsWith('/'));
   });
-  return `${first.slice(0, res).join('/')}/`;
+  if (!HasCommonPath && pathes[0] === '/') return start;
+  if (HasCommonPath) return `${pathes[0]}/`;
+  return getCommonDirectoryPath(pathes.map((item, index) => {
+    if (index > 0) return item;
+    const rest = item.split('/').slice(0, -1).join('/');
+    if (rest === '') return '/';
+    return rest;
+  }));
 }
 
 
